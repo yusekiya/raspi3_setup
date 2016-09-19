@@ -3,14 +3,21 @@
 ## Write os image to SD card using mac
 
 1. Identify the disk of SD card, e.g., `disk4` (not `disk4s1`) with `diskutil list`
-2. Unmount disk
+2. Format the SD card
+
+  ``` bash
+  $ diskutil eraseDisk FAT32 <RASPBIAN> </dev/diskX>
+  ```
+
+  Here, `<RASPBIAN>` is any name of the volume, and `diskX` is a disk identifier such as `disk4`.
+
+3. Unmount disk
 
   ``` bash
   $ diskutil unmountDisk </dev/diskX>
   ```
 
-  Here, `diskX` is a disk identifier such as `disk4`
-3. Write os image
+4. Write os image
 
   ``` bash
   $ sudo dd bs=1m if=<path/to/raspbian.img> of=</dev/rdiskX>
@@ -52,6 +59,53 @@ See [here][1] for detailed information.
 ## Setup with ansible
 
 
+## TODO
+
+- [x] common task
+  - [x] change timezone
+  - [x] change hostname
+  - [x] remove root privilege from user 'pi'
+  - [x] apt-get install
+  - [x] install virtual keyboard
+- [ ] setup firewall
+- [ ] wifi setup
+- [ ] dev environment task
+  - [ ] add user
+  - [ ] make basic directories
+  - [ ] install my dotfiles
+  - [ ] setup of python environment
+  - [ ] apt-get install
+    - [ ] build-essentialj
+    - [ ] htop
+    - [ ] pkg-config
+    - [ ] tree
+    - [ ] autoconf
+    - [ ] automake
+    - [ ] bash-completion
+    - [ ] cmake
+    - [ ] colordiff
+    - [ ] exuberant-ctags
+    - [ ] direnv
+    - [ ] nkf
+    - [ ] lua
+    - [ ] pandoc
+    - [ ] clang
+  - [ ] install fzf
+  - [ ] install latest tmux
+  - [ ] install latest tig
+  - [ ] install nodebrew
+  - [ ] clone git repositories
+    - [ ] tpm
+    - [ ] solarized
+    - [ ] dircolors-solarized
+    - [ ] enhancd
+- [ ] kiosk environment task
+  - [ ] add user
+  - [ ] auto login
+  - [ ] setup screen saver
+  - [ ] autohide LXDE panel
+  - [ ] rotate screen upside down
+  - [ ] modify backlight brightness (only when sys/class/backlight/rpi_backlight/brightness exists)
 
 
 

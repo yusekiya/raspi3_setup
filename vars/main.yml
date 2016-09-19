@@ -1,0 +1,10 @@
+---
+raspi_common_hostname: positron
+raspi_common_timezone: 'Asia/Tokyo'
+raspi_common_packages:
+  - {name: florence}
+  - {name: at-spi2-core}
+  - {name: vim}
+  - {name: git}
+  - {name: fonts-takao}
+  - {name: rsync}

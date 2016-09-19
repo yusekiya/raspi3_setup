@@ -1,0 +1,6 @@
+---
+- hosts: raspi
+  vars_files:
+    - vars/main.yml
+  roles:
+    - {role: raspi_common, become: yes}

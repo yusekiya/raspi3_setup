@@ -1,0 +1,6 @@
+---
+# raspi_common_hostname: raspberrypi
+# raspi_common_timezone: 'Asia/Tokyo'
+# raspi_common_packages:
+#   - {name: vim}
+#   - {name: git}

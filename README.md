@@ -52,6 +52,32 @@ See [here][1] for detailed information.
 ## Setup with ansible
 
 
+## TODO
+
+- [] common task
+  - [] setup firewall
+  - [] wifi setup
+  - [] change timezone
+  - [] change hostname
+  - [] modify backlight brightness
+  - [] remove root privilege from user 'pi'
+  - [] apt-get install
+    - [] japanese fonts
+    - [] ...
+  - [] install virtual keyboard
+- [] dev environment task
+  - [] add user
+  - [] install my dotfiles
+  - [] setup of python environment
+  - [] apt-get install
+    - [] htop
+    - [] pkg-config
+    - [] ...
+- [] kiosk environment task
+  - [] add user
+  - [] auto login
+  - [] setup screen saver
+  - [] autohide LXDE panel
 
 
 

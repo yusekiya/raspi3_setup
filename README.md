@@ -3,14 +3,21 @@
 ## Write os image to SD card using mac
 
 1. Identify the disk of SD card, e.g., `disk4` (not `disk4s1`) with `diskutil list`
-2. Unmount disk
+2. Format the SD card
+
+  ``` bash
+  $ diskutil eraseDisk FAT32 <RASPBIAN> </dev/diskX>
+  ```
+
+  Here, `<RASPBIAN>` is any name of the volume, and `diskX` is a disk identifier such as `disk4`.
+  
+3. Unmount disk
 
   ``` bash
   $ diskutil unmountDisk </dev/diskX>
   ```
 
-  Here, `diskX` is a disk identifier such as `disk4`
-3. Write os image
+4. Write os image
 
   ``` bash
   $ sudo dd bs=1m if=<path/to/raspbian.img> of=</dev/rdiskX>

@@ -10,7 +10,7 @@
   ```
 
   Here, `<RASPBIAN>` is any name of the volume, and `diskX` is a disk identifier such as `disk4`.
-  
+
 3. Unmount disk
 
   ``` bash
@@ -61,30 +61,51 @@ See [here][1] for detailed information.
 
 ## TODO
 
-- [] common task
-  - [] setup firewall
-  - [] wifi setup
-  - [] change timezone
-  - [] change hostname
-  - [] modify backlight brightness
-  - [] remove root privilege from user 'pi'
-  - [] apt-get install
-    - [] japanese fonts
-    - [] ...
-  - [] install virtual keyboard
-- [] dev environment task
-  - [] add user
-  - [] install my dotfiles
-  - [] setup of python environment
-  - [] apt-get install
-    - [] htop
-    - [] pkg-config
-    - [] ...
-- [] kiosk environment task
-  - [] add user
-  - [] auto login
-  - [] setup screen saver
-  - [] autohide LXDE panel
+- [x] common task
+  - [x] change timezone
+  - [x] change hostname
+  - [x] remove root privilege from user 'pi'
+  - [x] apt-get install
+  - [x] install virtual keyboard
+- [ ] setup firewall
+- [ ] wifi setup
+- [ ] dev environment task
+  - [ ] add user
+  - [ ] make basic directories
+  - [ ] install my dotfiles
+  - [ ] setup of python environment
+  - [ ] apt-get install
+    - [ ] build-essentialj
+    - [ ] htop
+    - [ ] pkg-config
+    - [ ] tree
+    - [ ] autoconf
+    - [ ] automake
+    - [ ] bash-completion
+    - [ ] cmake
+    - [ ] colordiff
+    - [ ] exuberant-ctags
+    - [ ] direnv
+    - [ ] nkf
+    - [ ] lua
+    - [ ] pandoc
+    - [ ] clang
+  - [ ] install fzf
+  - [ ] install latest tmux
+  - [ ] install latest tig
+  - [ ] install nodebrew
+  - [ ] clone git repositories
+    - [ ] tpm
+    - [ ] solarized
+    - [ ] dircolors-solarized
+    - [ ] enhancd
+- [ ] kiosk environment task
+  - [ ] add user
+  - [ ] auto login
+  - [ ] setup screen saver
+  - [ ] autohide LXDE panel
+  - [ ] rotate screen upside down
+  - [ ] modify backlight brightness (only when sys/class/backlight/rpi_backlight/brightness exists)
 
 
 

@@ -1,6 +1,7 @@
 ---
 - hosts: raspi
   vars_files:
+    - vars/vault_wifi_key.yml
     - vars/main.yml
   roles:
     - {role: raspi_common, become: yes}

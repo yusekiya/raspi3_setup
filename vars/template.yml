@@ -21,3 +21,5 @@ firewall_additional_rules:
     # Allow specific connection from WAN
     # - "iptables -A INPUT -p tcp --dport 22 -s 123.456.789.012 -j ACCEPT"
 
+# Variable vault_raspi_network_wifi should be defined in another file.
+raspi_network_wifi: '{{ vault_raspi_network_wifi | default([]) }}'

@@ -58,7 +58,7 @@ See [here][1] for detailed information.
 
 ## Setup with ansible
 
-1. Find the ip address of raspi and write the address in the inventry file, hosts.
+1. Copy template inventory file, template_hosts, to inventory file, hosts, and write the ip address of raspi into the inventory file.
 2. Copy var/template.yml to var/main.yml, and modify variables in the file.
 3. Run playbook
 

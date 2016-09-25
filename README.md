@@ -58,6 +58,14 @@ See [here][1] for detailed information.
 
 ## Setup with ansible
 
+1. Find the ip address of raspi and write the address in the inventry file, hosts.
+2. Copy var/template.yml to var/main.yml, and modify variables in the file.
+3. Run playbook
+
+  ``` bash
+  $ ansible-playbook site.yml
+  ```
+
 
 ## TODO
 
@@ -67,8 +75,8 @@ See [here][1] for detailed information.
   - [x] remove root privilege from user 'pi'
   - [x] apt-get install
   - [x] install virtual keyboard
-- [ ] setup firewall
-- [ ] wifi setup
+- [x] setup firewall
+- [x] wifi setup
 - [ ] dev environment task
   - [ ] add user
   - [ ] make basic directories

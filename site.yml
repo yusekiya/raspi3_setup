@@ -4,3 +4,4 @@
     - vars/main.yml
   roles:
     - {role: raspi_common, become: yes}
+    - {role: geerlingguy.firewall, become: yes}

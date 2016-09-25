@@ -8,3 +8,16 @@ raspi_common_packages:
   - {name: git}
   - {name: fonts-takao}
   - {name: rsync}
+
+firewall_allowed_tcp_ports: []
+firewall_additional_rules:
+    # Allow all type of connection from LAN
+    - "iptables -A INPUT -p all -s 10.0.0.0/8 -j ACCEPT"
+    - "iptables -A INPUT -p all -s 172.16.0.0/12 -j ACCEPT"
+    - "iptables -A INPUT -p all -s 192.168.0.0/16 -j ACCEPT"
+    # Allow connection with DHCP server
+    - "iptables -A INPUT -i eth0 -p udp --sport bootpc --dport bootps -j ACCEPT"
+    - "iptables -A INPUT -i wlan0 -p udp --sport bootpc --dport bootps -j ACCEPT"
+    # Allow specific connection from WAN
+    # - "iptables -A INPUT -p tcp --dport 22 -s 123.456.789.012 -j ACCEPT"
+

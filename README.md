@@ -83,7 +83,7 @@ See [here][1] for detailed information.
   - [ ] install my dotfiles
   - [ ] setup of python environment
   - [ ] apt-get install
-    - [ ] build-essentialj
+    - [ ] build-essential
     - [ ] htop
     - [ ] pkg-config
     - [ ] tree

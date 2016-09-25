@@ -1,0 +1,18 @@
+---
+- name: Create pairs of ssid and psk
+  shell: 'wpa_passphrase {{item.SSID}} {{item.PASS}} | sed -e "/#psk=/d"'
+  with_items: '{{ raspi_network_wifi }}'
+  register: wifi_ssid_psk
+  no_log: yes
+  changed_when: false
+
+- name: Add wifi setting
+  become: yes
+  blockinfile:
+    state: present
+    dest: /etc/wpa_supplicant/wpa_supplicant.conf
+    insertafter: EOF
+    block: '{{item.stdout}}'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{item.item.SSID}}"
+  with_items: '{{wifi_ssid_psk.results|list}}'
+  no_log: yes

@@ -60,7 +60,8 @@ See [here][1] for detailed information.
 
 1. Copy template inventory file, template_hosts, to inventory file, hosts, and write the ip address of raspi into the inventory file.
 2. Copy var/template.yml to var/main.yml, and modify variables in the file.
-3. Run playbook
+3. To setup wifi, the vault password is required. If you don't need wifi setup, comment out `vars/vault_wifi_key.yml` in site.yml, and `ask_vault_pass = True` in ansible.cfg. Otherwise, modify variable `raspi_network_wifi` according to your environment.
+4. Run playbook
 
   ``` bash
   $ ansible-playbook site.yml

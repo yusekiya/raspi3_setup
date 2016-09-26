@@ -1,0 +1,14 @@
+---
+- name: Create symlink to dotfiles
+  shell: '{{ dev_env_dotfiles.symlink_script }}'
+  args:
+    chdir: "{{ dev_env_dotfiles.dest }}"
+
+- name: Install anaconda
+  shell: 'bash {{dev_env_anaconda.dest}} -b -p {{dev_env_anaconda.prefix}}'
+
+- name: Install fzf
+  shell: 'allow_legacy=1 /home/{{dev_env_user}}/.fzf/install --key-bindings --completion --no-update-rc'
+
+- name: Install nodebrew
+  shell: 'perl {{dev_env_nodebrew.dest}} setup'

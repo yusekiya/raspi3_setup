@@ -1,0 +1,78 @@
+---
+- name: Make basic directories
+  file:
+    path: '{{item.path}}'
+    state: directory
+  with_items: '{{dev_env_basic_dirs}}'
+
+- name: Git clone dotfiles
+  git:
+    repo: '{{dev_env_dotfiles.repository}}'
+    dest: '{{dev_env_dotfiles.dest}}'
+  notify: Create symlink to dotfiles
+  when: dev_env_detfiles is defined
+
+- name: Check if miniconda has been installed
+  stat: path='{{dev_env_anaconda.prefix}}'
+  register: stat_anaconda_dir
+
+- name: Download script to install anaconda
+  get_url:
+    url: '{{dev_env_anaconda.src}}'
+    dest: '{{dev_env_anaconda.dest}}'
+  when: not stat_anaconda_dir.stat.exists
+  notify: Install anaconda
+
+- name: Update package index file
+  become: yes
+  become_user: root
+  apt: update_cache=yes
+
+- name: Install packages
+  become: yes
+  become_user: root
+  apt:
+    name: '{{item.name}}'
+    state: '{{item.state | default("latest")}}'
+  with_items: '{{dev_env_packages}}'
+
+- name: Clone git repositories
+  git:
+    repo: "{{item.repo}}"
+    dest: "{{item.dest}}"
+  with_items: "{{dev_env_git_repos}}"
+  register: ret_dev_env_git_repos
+
+- name: Git clone fzf
+  git:
+    repo: "https://github.com/junegunn/fzf.git"
+    dest: "~/.fzf"
+  notify: Install fzf
+
+- name: Build and install tmux
+  shell: >
+    sh autogen.sh;
+    ./configure --prefix=/home/{{dev_env_user}}/usr;
+    make && make install
+  args:
+    chdir: '~/repos/tmux'
+  when: '{{"tmux" in ret_dev_env_git_repos.results|selectattr("changed")|map(attribute="item.name")|list}}'
+
+- name: Build and install tig
+  shell: >
+    make;
+    make install
+  args:
+    chdir: '~/repos/tig'
+  when: '{{"tig" in ret_dev_env_git_repos.results|selectattr("changed")|map(attribute="item.name")|list}}'
+
+- name: Check if nodebrew has been installed
+  stat: path='{{dev_env_nodebrew.executable_path}}'
+  register: stat_nodebrew
+
+- name: Download nodebrew
+  get_url:
+    url: '{{dev_env_nodebrew.src}}'
+    dest: '{{dev_env_nodebrew.dest}}'
+  when: not stat_nodebrew.stat.exists
+  notify: Install nodebrew

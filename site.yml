@@ -8,3 +8,4 @@
     - {role: geerlingguy.firewall, become: yes}
     - {role: raspi_network}
     - {role: create_users, become: yes}
+    - {role: dev_env, when: dev_env_user is defined, become: yes, become_user: '{{dev_env_user}}'}

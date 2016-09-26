@@ -1,5 +1,5 @@
 ---
-raspi_common_hostname: positron
+raspi_common_hostname: raspberrypi
 raspi_common_timezone: 'Asia/Tokyo'
 raspi_common_packages:
   - {name: florence}
@@ -23,3 +23,9 @@ firewall_additional_rules:
 
 # Variable vault_raspi_network_wifi should be defined in another file.
 raspi_network_wifi: '{{ vault_raspi_network_wifi | default([]) }}'
+
+# List of dictionary including username, plain password, and groups to be appended.
+# The key `groups` is optional.
+# create_users_list:
+#   - {name: 'hoge', pass: 'plainpassword', groups: 'adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi'}
+

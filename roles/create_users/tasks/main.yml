@@ -1,0 +1,11 @@
+---
+- name: Add users
+  user:
+    name: '{{item.name}}'
+    password: '{{item.pass | password_hash("sha512")}}'
+    groups: '{{item.groups|default(omit)}}'
+    append: yes
+  with_items: '{{create_users_list}}'
+  # Set 'changed: false' forcely (This module returns 'changed: true' always because of maybe a bug)
+  changed_when: false
+

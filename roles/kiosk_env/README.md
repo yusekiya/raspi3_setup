@@ -6,7 +6,7 @@ This role includes following tasks.
 
 - Change autologin user to a specified user (tags: autologin, need_root)
 - Show/Hide cursor (tags: cursor, need_root)
-- Autohide settings of LXDE panel (tags: lxde_panel)
+- Enable/Disable autohide of LXDE panel (tags: lxde_panel)
 - Install and configure xscreensaver (tags: screensaver, apt, need_root)
 - Add cron tasks for xscreensaver (tags: screensaver, cron)
 - Rotate screen upside down (tags: screen_rotation, need_root)
@@ -30,7 +30,7 @@ User name for kiosk mode.
 kiosk_env_user: 'info'
 ```
 
-Whether to enable autologin of the account or not.
+Whether to enable autologin of the account.
 
 ``` yaml
 kiosk_env_autologin_enabled: yes
@@ -43,7 +43,7 @@ kiosk_env_cursor_enabled: no
 
 ```
 
-Whether to enable autohide of LXDE panel (task bar), and the height of the hidden panel .
+Whether to enable autohide of LXDE panel (task bar), and the height of the hidden panel in pixels.
 
 ``` yaml
 kiosk_env_autohide_enabled: yes
@@ -56,6 +56,7 @@ Variables to configure xscreensaver.
 kiosk_env_xscreensaver:
   # Screen goes blank after keyborad or mouse have been idle for this time
   timeout: '12:00:00'
+  # What type of screen saver is used
   mode: 'blank'
   # Settings for power management (may not work)
   dpmsEnabled: 'False'

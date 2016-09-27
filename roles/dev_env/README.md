@@ -51,7 +51,7 @@ dev_env_basic_dirs:
 ```
 
 Information about your dotfiles.
-`symlink_script` will be executed after the task changed.
+`symlink_script` will be executed in the directory `dest` after the task changed.
 
 ``` yaml
 dev_env_dotfiles:

@@ -4,6 +4,8 @@
     path: '{{item.path}}'
     state: directory
   with_items: '{{dev_env_basic_dirs}}'
+  tags:
+    - basic_dirs
 
 - name: Git clone dotfiles
   git:
@@ -11,10 +13,15 @@
     dest: '{{dev_env_dotfiles.dest}}'
   notify: Create symlink to dotfiles
   when: dev_env_detfiles is defined
+  tags:
+    - dotfiles
+    - git
 
 - name: Check if miniconda has been installed
   stat: path='{{dev_env_anaconda.prefix}}'
   register: stat_anaconda_dir
+  tags:
+    - python
 
 - name: Download script to install anaconda
   get_url:
@@ -22,11 +29,15 @@
     dest: '{{dev_env_anaconda.dest}}'
   when: not stat_anaconda_dir.stat.exists
   notify: Install anaconda
+  tags:
+    - python
 
 - name: Update package index file
   become: yes
   become_user: root
   apt: update_cache=yes
+  tags:
+    - package_install
 
 - name: Install packages
   become: yes
@@ -35,6 +46,8 @@
     name: '{{item.name}}'
     state: '{{item.state | default("latest")}}'
   with_items: '{{dev_env_packages}}'
+  tags:
+    - package_install
 
 - name: Clone git repositories
   git:
@@ -42,8 +55,12 @@
     dest: "{{item.dest}}"
   with_items: "{{dev_env_git_repos}}"
   register: ret_dev_env_git_repos
+  tags:
+    - git
 
 - name: Install dependencies for fzf
+  become: yes
+  become_user: root
   apt:
     name: '{{item}}'
     state: present
@@ -52,14 +69,22 @@
     - libncursesw5
     - libncursesw5-dev
     - libncurses5-dev
+  tags:
+    - package_install
+    - fzf
 
 - name: Git clone fzf
   git:
     repo: "https://github.com/junegunn/fzf.git"
     dest: "~/.fzf"
   notify: Install fzf
+  tags:
+    - git
+    - fzf
 
 - name: Install dependencies for tmux
+  become: yes
+  become_user: root
   apt:
     name: '{{item}}'
     state: present
@@ -67,6 +92,9 @@
     - automake
     - libncurses5-dev
     - libevent-dev
+  tags:
+    - package_install
+    - tmux
 
 - name: Build and install tmux
   shell: >
@@ -76,14 +104,22 @@
   args:
     chdir: '~/repos/tmux'
   when: '{{"tmux" in ret_dev_env_git_repos.results|selectattr("changed")|map(attribute="item.name")|list}}'
+  tags:
+    - tmux
+    - git
 
 - name: Install dependencies for tig
+  become: yes
+  become_user: root
   apt:
     name: '{{item}}'
     state: present
   with_items:
     - automake
     - libncurses5-dev
+  tags:
+    - package_install
+    - tig
 
 - name: Build and install tig
   shell: >
@@ -92,10 +128,15 @@
   args:
     chdir: '~/repos/tig'
   when: '{{"tig" in ret_dev_env_git_repos.results|selectattr("changed")|map(attribute="item.name")|list}}'
+  tags:
+    - tig
+    - git
 
 - name: Check if nodebrew has been installed
   stat: path='{{dev_env_nodebrew.executable_path}}'
   register: stat_nodebrew
+  tags:
+    - nodebrew
 
 - name: Download nodebrew
   get_url:
@@ -103,3 +144,5 @@
     dest: '{{dev_env_nodebrew.dest}}'
   when: not stat_nodebrew.stat.exists
   notify: Install nodebrew
+  tags:
+    - nodebrew

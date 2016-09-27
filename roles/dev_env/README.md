@@ -2,6 +2,17 @@ Ansible Role: dev_env
 =========
 
 Establish development environment.
+This role includes following tasks.
+
+- Create directories (tags: basic_dirs)
+- Clone user's dotfiles (tags: dotfiles, git)
+- Install anaconda/miniconda (tags: python)
+- Install packages through apt-get (tags: package_install)
+- Clone git repos (tags: git)
+- Install and build fzf (tags: fzf, package_install, git)
+- Install and build tmux (tags: tmux, package_install, git)
+- Install and build tig (tags: tig, package_install, git)
+- Install nodebrew (tags: nodebrew)
 
 Requirements
 ------------

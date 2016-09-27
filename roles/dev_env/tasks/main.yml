@@ -37,7 +37,7 @@
   become_user: root
   apt: update_cache=yes
   tags:
-    - package_install
+    - apt
 
 - name: Install packages
   become: yes
@@ -47,7 +47,7 @@
     state: '{{item.state | default("latest")}}'
   with_items: '{{dev_env_packages}}'
   tags:
-    - package_install
+    - apt
 
 - name: Make sure that directory for git repos exists
   file:
@@ -77,7 +77,7 @@
     - libncursesw5-dev
     - libncurses5-dev
   tags:
-    - package_install
+    - apt
     - fzf
 
 - name: Git clone fzf
@@ -100,7 +100,7 @@
     - libncurses5-dev
     - libevent-dev
   tags:
-    - package_install
+    - apt
     - tmux
 
 - name: Clone tmux repo and install
@@ -122,7 +122,7 @@
     - automake
     - libncurses5-dev
   tags:
-    - package_install
+    - apt
     - tig
 
 - name: Clone tig repo and install

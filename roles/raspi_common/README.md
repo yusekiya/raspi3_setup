@@ -7,8 +7,8 @@ This role performs the followig tasks:
 - Modify privilege of default user pi (tags: always)
 - Change timezone (tags: timezone)
 - Change hostname (tags: hostname)
-- Install packages through apt-get (tags: package_install)
-- Install and configure florence (tags: florence, package_install)
+- Install packages through apt-get (tags: apt)
+- Install and configure florence (tags: florence, apt)
 
 Requirements
 ------------

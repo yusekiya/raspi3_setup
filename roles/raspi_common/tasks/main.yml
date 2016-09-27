@@ -1,4 +1,4 @@
----
+--
 - name: Put pi into sudo group
   user:
     name: pi
@@ -57,7 +57,7 @@
     state: '{{ item.state | default("latest") }}'
   with_items: '{{ raspi_common_packages }}'
   tags:
-    - package_install
+    - apt
 
 - name: Install dependencies for florence
   apt:
@@ -68,7 +68,7 @@
     - at-spi2-core
   tags:
     - florence
-    - package_install
+    - apt
 
 - name: 'Enable virtual keyboard on login screen | modfy task bar'
   lineinfile:

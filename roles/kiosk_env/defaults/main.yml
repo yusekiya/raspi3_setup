@@ -1,0 +1,24 @@
+---
+# kiosk_env_user: 'info'
+kiosk_env_autologin_enabled: no
+kiosk_env_cursor_enabled: yes
+kiosk_env_autohide_enabled: no
+kiosk_env_autohide_panel_height: 0
+kiosk_env_xscreensaver:
+  timeout: '00:10:00'
+  mode: 'blank'
+  dpmsEnabled: 'False'
+  dpmsQuickoffEnabled: 'False'
+  dpmsStandby: '2:00:00'
+  dpmsSuspend: '2:00:00'
+  dpmsOff: '4:00:00'
+kiosk_env_cron_mail_enabled: no
+kiosk_env_xscreensaver_cron_enabled: no
+kiosk_env_xscreensaver_activate_time:
+  minute: 0
+  hour: 23
+kiosk_env_xscreensaver_deactivate_time:
+  minute: 0
+  hour: 12
+# integer between 0 and 255
+kiosk_env_backlight_brightness: 255

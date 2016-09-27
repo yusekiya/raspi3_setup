@@ -1,4 +1,4 @@
---
+---
 - name: Put pi into sudo group
   user:
     name: pi

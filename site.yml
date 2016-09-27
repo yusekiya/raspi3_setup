@@ -9,3 +9,4 @@
     - {role: raspi_network}
     - {role: create_users, become: yes}
     - {role: dev_env, when: dev_env_user is defined, become: yes, become_user: '{{dev_env_user}}'}
+    - {role: kiosk_env, when: kiosk_env_user is defined, become: yes, become_user: '{{kiosk_env_user}}'}

@@ -12,7 +12,7 @@
     repo: '{{dev_env_dotfiles.repository}}'
     dest: '{{dev_env_dotfiles.dest}}'
   notify: Create symlink to dotfiles
-  when: dev_env_detfiles is defined
+  when: dev_env_dotfiles is defined
   tags:
     - dotfiles
     - git

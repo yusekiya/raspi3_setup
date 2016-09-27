@@ -125,13 +125,11 @@
     - package_install
     - tig
 
-- name: Build and install tig
-  shell: >
-    make;
-    make install
-  args:
-    chdir: '~/repos/tig'
-  when: '{{"tig" in ret_dev_env_git_repos.results|selectattr("changed")|map(attribute="item.name")|list}}'
+- name: Clone tig repo and install
+  git:
+    repo: "https://github.com/jonas/tig.git"
+    dest: "~/repos/tig"
+  notify: Install tig
   tags:
     - tig
     - git

@@ -18,5 +18,12 @@
   args:
     chdir: '~/repos/tmux'
 
+- name: Install tig
+  shell: >
+    make;
+    make install
+  args:
+    chdir: '~/repos/tig'
+
 - name: Install nodebrew
   shell: 'perl {{dev_env_nodebrew.dest}} setup'

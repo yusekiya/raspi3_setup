@@ -27,6 +27,8 @@ Example Playbook
 
 ``` yaml
 - hosts: all
+  vars_files:
+    - vars/main.yml
   roles:
     - {role: create_users, become: yes}
 ```

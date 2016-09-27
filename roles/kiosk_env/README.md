@@ -12,7 +12,7 @@ This role includes following tasks.
 - Rotate screen upside down (tags: screen_rotation, need_root)
 - Configure backlight brightness (tags: backlight)
 
-Tasks which need root privilege has need_root tag.
+The need_root tag is added to tasks which requires root privilege.
 
 Requirements
 ------------
@@ -30,20 +30,20 @@ User name for kiosk mode.
 kiosk_env_user: 'info'
 ```
 
-Whether enable autologin of the account or not.
+Whether to enable autologin of the account or not.
 
 ``` yaml
 kiosk_env_autologin_enabled: yes
 ```
 
-Whether show cursor.
+Whether to show cursor.
 
 ``` yaml
 kiosk_env_cursor_enabled: no
 
 ```
 
-Whether enable autohide of LXDE panel (task bar), and the height of the hidden panel .
+Whether to enable autohide of LXDE panel (task bar), and the height of the hidden panel .
 
 ``` yaml
 kiosk_env_autohide_enabled: yes
@@ -65,7 +65,7 @@ kiosk_env_xscreensaver:
   dpmsOff: '12:00:00'
 ```
 
-Whether let crontab send you email.
+Whether to let crontab send you email.
 
 ``` yaml
 kiosk_env_cron_mail_enabled: no
@@ -78,7 +78,7 @@ kiosk_env_xscreensaver_cron_enabled: yes
 
 ```
 
-When is screensaver activated/deactivated.
+When to screensaver is activated/deactivated.
 
 ``` yaml
 kiosk_env_xscreensaver_activate_time:

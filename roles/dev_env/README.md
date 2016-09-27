@@ -14,7 +14,7 @@ This role includes following tasks.
 - Install and build tig (tags: tig, apt, git, need_root)
 - Install nodebrew (tags: nodebrew)
 
-Tasks which needs root privilege have need_root tag.
+The need_root tag is added to tasks which requires root privilege.
 
 Requirements
 ------------

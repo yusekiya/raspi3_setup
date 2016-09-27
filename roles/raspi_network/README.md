@@ -2,11 +2,11 @@ Ansible Role: Network setup for raspberry pi
 =========
 
 Configure network settings of raspberry pi.
-This role
+This role performs the following tasks.
 
 - Set WiFi SSID and psk (tags: wifi)
 
-The all tasks need root privilege.
+All the tasks need root privilege.
 
 Requirements
 ------------
@@ -17,7 +17,7 @@ Role Variables
 --------------
 Available variables are listed below.
 
-A list of dictionary composed of ssid and pass phrase of wifi.
+A list of dictionary composed of ssid and plain pass phrase of wifi.
 
 ``` yaml
 raspi_network_wifi:

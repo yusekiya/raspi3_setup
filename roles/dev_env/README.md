@@ -64,6 +64,22 @@ dev_env_packages:
   - {name: build-essential}
   - {name: htop}
   - {name: pkg-config}
+  - {name: tree}
+  - {name: autoconf}
+  - {name: automake}
+  - {name: bash-completion}
+  - {name: cmake}
+  - {name: colordiff}
+  - {name: exuberant-ctags}
+  - {name: direnv}
+  - {name: nkf}
+  - {name: pandoc}
+  - {name: clang}
+  - {name: ruby2.1-dev}
+  - {name: libncursesw5}
+  - {name: libncursesw5-dev}
+  - {name: libncurses5-dev}
+  - {name: libevent-dev}
 ```
 
 List of git repositories to be cloned.
@@ -73,9 +89,21 @@ dev_env_git_repos:
   - {name: tpm,
      repo: "https://github.com/tmux-plugins/tpm.git",
      dest: "~/.tmux/plugins/tpm" }
+  # - {name: solarized,
+  #    repo: "https://github.com/altercation/solarized.git",
+  #    dest: "~/repos/solarized" }
   - {name: dircolors-solarized,
      repo: "https://github.com/seebi/dircolors-solarized.git",
      dest: "~/repos/dircolors-solarized" }
+  - {name: enhancd,
+     repo: "https://github.com/b4b4r07/enhancd.git",
+     dest: "~/repos/enhancd" }
+  - {name: tmux,
+     repo: "https://github.com/tmux/tmux.git",
+     dest: "~/repos/tmux"}
+  - {name: tig,
+     repo: "https://github.com/jonas/tig.git",
+     dest: "~/repos/tig"}
 ```
 
 Information for nodebrew.

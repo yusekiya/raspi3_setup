@@ -32,8 +32,12 @@ raspi_common_hostname: raspberrypi
 raspi_common_timezone: 'Asia/Tokyo'
 # Packages to be installed
 raspi_common_packages:
+  - {name: florence}
+  - {name: at-spi2-core}
   - {name: vim}
   - {name: git}
+  - {name: fonts-takao}
+  - {name: rsync}
 ```
 
 Dependencies

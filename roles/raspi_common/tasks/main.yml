@@ -4,6 +4,8 @@
     name: pi
     append: yes
     groups: sudo
+  tags:
+    - always
 
 - name: Remove excessive privilege from pi
   lineinfile:
@@ -12,6 +14,8 @@
     regexp: '^#?pi'
     line: '#pi ALL=(ALL) NOPASSWD:ALL'
     validate: 'visudo -cf %s'
+  tags:
+    - always
 
 - name: Change timezone
   template:
@@ -21,6 +25,8 @@
     group: root
     mode: 0644
   notify: Update timezone
+  tags:
+    - timezone
 
 - name: Change hostname [/etc/hostname]
   template:
@@ -29,6 +35,8 @@
     owner: root
     group: root
     mode: 0644
+  tags:
+    - hostname
 
 - name: Change hostname [/etc/hosts]
   lineinfile:
@@ -37,6 +45,8 @@
     backrefs: yes
     regexp: '^127\.0\.1\.1'
     line: '127.0.1.1 {{ raspi_common_hostname }}'
+  tags:
+    - hostname
 
 - name: Update package index file
   apt: update_cache=yes
@@ -46,6 +56,8 @@
     name: '{{ item.name }}'
     state: '{{ item.state | default("latest") }}'
   with_items: '{{ raspi_common_packages }}'
+  tags:
+    - package_install
 
 - name: Install dependencies for florence
   apt:
@@ -54,6 +66,9 @@
   with_items:
     - florence
     - at-spi2-core
+  tags:
+    - florence
+    - package_install
 
 - name: 'Enable virtual keyboard on login screen | modfy task bar'
   lineinfile:
@@ -61,6 +76,8 @@
     dest: /etc/lightdm/lightdm-gtk-greeter.conf
     regexp: '^show-indicators'
     line: 'show-indicators=~language;~a11y;~session;~power'
+  tags:
+    - florence
 
 - name: 'Enable virtual keyboard on login screen | use florence as keyboard'
   lineinfile:
@@ -68,4 +85,6 @@
     dest: /etc/lightdm/lightdm-gtk-greeter.conf
     regexp: '^#?keyboard'
     line: 'keyboard=florence --focus'
+  tags:
+    - florence
 

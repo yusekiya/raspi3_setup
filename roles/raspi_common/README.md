@@ -4,17 +4,16 @@ raspi_common
 Common setup of raspberry pi3.
 This role performs the followig tasks:
 
-- Modify privilege of default user pi
-- Change timezone
-- Change hostname
-- Install minimum packages
-- Setup virtual keyboard
+- Modify privilege of default user pi (tags: always)
+- Change timezone (tags: timezone)
+- Change hostname (tags: hostname)
+- Install packages through apt-get (tags: package_install)
+- Install and configure florence (tags: florence, package_install)
 
 Requirements
 ------------
 
-Ansible (2.1.1)
-
+- Ansible (2.1.1)
 - useradd
 - userdel
 - usermod
@@ -23,7 +22,7 @@ Ansible (2.1.1)
 Role Variables
 --------------
 
-Available variables are listed below, along with default values (see `raspi_common/vars/main.yml`):
+Available variables are listed below.
 
 ``` yaml
 # hostname

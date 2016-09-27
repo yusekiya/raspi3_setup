@@ -68,55 +68,15 @@ See [here][1] for detailed information.
   ```
 
 
-## TODO
+## Launch application automatically after login for kiosk user
+Edit `/home/<user>/.config/autostart/<name>.desktop`.
 
-- [x] common task
-  - [x] change timezone
-  - [x] change hostname
-  - [x] remove root privilege from user 'pi'
-  - [x] apt-get install
-  - [x] install virtual keyboard
-- [x] setup firewall
-- [x] wifi setup
-- [ ] dev environment task
-  - [x] add user
-  - [x] make basic directories
-  - [x] install my dotfiles
-  - [x] setup of python environment
-  - [ ] apt-get install
-    - [x] git
-    - [x] build-essential
-    - [x] htop
-    - [x] pkg-config
-    - [x] tree
-    - [x] autoconf
-    - [x] automake
-    - [x] bash-completion
-    - [x] cmake
-    - [x] colordiff
-    - [x] exuberant-ctags
-    - [x] direnv
-    - [x] nkf
-    - [ ] lua
-    - [x] pandoc
-    - [x] clang
-  - [x] install fzf
-  - [x] install latest tmux
-  - [x] install latest tig
-  - [x] install nodebrew
-  - [ ] clone git repositories
-    - [x] tpm
-    - [ ] solarized
-    - [x] dircolors-solarized
-    - [x] enhancd
-- [ ] kiosk environment task
-  - [x] add user
-  - [ ] auto login
-  - [ ] setup screen saver
-  - [ ] autohide LXDE panel
-  - [ ] rotate screen upside down
-  - [ ] modify backlight brightness (only when sys/class/backlight/rpi_backlight/brightness exists)
-
+``` ini:/home/<user>/.config/autostart/<name>.desktop
+[Desktop Entry]
+Type=Application
+Name=<name>
+Exec=<absolute/path/to/executable>
+```
 
 
 <!-- Reference -->

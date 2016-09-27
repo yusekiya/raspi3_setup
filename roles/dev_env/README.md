@@ -109,9 +109,6 @@ dev_env_git_repos:
   - {name: enhancd,
      repo: "https://github.com/b4b4r07/enhancd.git",
      dest: "~/repos/enhancd" }
-  - {name: tmux,
-     repo: "https://github.com/tmux/tmux.git",
-     dest: "~/repos/tmux"}
   - {name: tig,
      repo: "https://github.com/jonas/tig.git",
      dest: "~/repos/tig"}

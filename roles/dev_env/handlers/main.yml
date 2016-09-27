@@ -10,5 +10,13 @@
 - name: Install fzf
   shell: 'allow_legacy=1 /home/{{dev_env_user}}/.fzf/install --key-bindings --completion --no-update-rc'
 
+- name: Install tmux
+  shell: >
+    sh autogen.sh;
+    ./configure --prefix=/home/{{dev_env_user}}/usr;
+    make && make install
+  args:
+    chdir: '~/repos/tmux'
+
 - name: Install nodebrew
   shell: 'perl {{dev_env_nodebrew.dest}} setup'

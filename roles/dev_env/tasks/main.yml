@@ -49,6 +49,13 @@
   tags:
     - package_install
 
+- name: Make sure that directory for git repos exists
+  file:
+    path: '~/repos'
+    state: directory
+  tags:
+    - git
+
 - name: Clone git repositories
   git:
     repo: "{{item.repo}}"
@@ -96,14 +103,11 @@
     - package_install
     - tmux
 
-- name: Build and install tmux
-  shell: >
-    sh autogen.sh;
-    ./configure --prefix=/home/{{dev_env_user}}/usr;
-    make && make install
-  args:
-    chdir: '~/repos/tmux'
-  when: '{{"tmux" in ret_dev_env_git_repos.results|selectattr("changed")|map(attribute="item.name")|list}}'
+- name: Clone tmux repo and install
+  git:
+    repo: "https://github.com/tmux/tmux.git"
+    dest: "~/repos/tmux"
+  notify: Install tmux
   tags:
     - tmux
     - git

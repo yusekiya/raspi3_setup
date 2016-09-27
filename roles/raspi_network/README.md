@@ -6,6 +6,8 @@ This role
 
 - Set WiFi SSID and psk (tags: wifi)
 
+The all tasks need root privilege.
+
 Requirements
 ------------
 

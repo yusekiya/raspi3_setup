@@ -7,12 +7,14 @@ This role includes following tasks.
 - Create directories (tags: basic_dirs)
 - Clone user's dotfiles (tags: dotfiles, git)
 - Install anaconda/miniconda (tags: python)
-- Install packages through apt-get (tags: apt)
+- Install packages through apt-get (tags: apt, need_root)
 - Clone git repos (tags: git)
-- Install and build fzf (tags: fzf, apt, git)
-- Install and build tmux (tags: tmux, apt, git)
-- Install and build tig (tags: tig, apt, git)
+- Install and build fzf (tags: fzf, apt, git, need_root)
+- Install and build tmux (tags: tmux, apt, git, need_root)
+- Install and build tig (tags: tig, apt, git, need_root)
 - Install nodebrew (tags: nodebrew)
+
+Tasks which needs root privilege have need_root tag.
 
 Requirements
 ------------

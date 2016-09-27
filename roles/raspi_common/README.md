@@ -10,6 +10,8 @@ This role performs the followig tasks:
 - Install packages through apt-get (tags: apt)
 - Install and configure florence (tags: florence, apt)
 
+The all tasks need root privilege.
+
 Requirements
 ------------
 

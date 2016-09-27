@@ -38,6 +38,7 @@
   apt: update_cache=yes
   tags:
     - apt
+    - need_root
 
 - name: Install packages
   become: yes
@@ -48,6 +49,7 @@
   with_items: '{{dev_env_packages}}'
   tags:
     - apt
+    - need_root
 
 - name: Make sure that directory for git repos exists
   file:
@@ -79,6 +81,7 @@
   tags:
     - apt
     - fzf
+    - need_root
 
 - name: Git clone fzf
   git:
@@ -102,6 +105,7 @@
   tags:
     - apt
     - tmux
+    - need_root
 
 - name: Clone tmux repo and install
   git:
@@ -124,6 +128,7 @@
   tags:
     - apt
     - tig
+    - need_root
 
 - name: Clone tig repo and install
   git:

@@ -2,6 +2,7 @@ Ansible Role: create users
 =========
 
 Create users.
+The all tasks need root privilege.
 
 Requirements
 ------------

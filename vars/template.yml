@@ -29,3 +29,76 @@ raspi_network_wifi: '{{ vault_raspi_network_wifi | default([]) }}'
 # create_users_list:
 #   - {name: 'hoge', pass: 'plainpassword', groups: 'adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi'}
 
+# Modify user name for development environment
+# dev_env_user: 'username'
+
+dev_env_basic_dirs:
+  - {path: '~/Downloads'}
+  - {path: '~/.nodebrew/src'}
+  - {path: '~/bin'}
+  - {path: '~/repos'}
+  - {path: '~/scratch'}
+  - {path: '~/share'}
+  - {path: '~/usr/bin'}
+  - {path: '~/usr/include'}
+  - {path: '~/usr/lib'}
+  - {path: '~/usr/lib/python3/site-packages'}
+  - {path: '~/usr/share'}
+  - {path: '~/usr/src'}
+
+dev_env_dotfiles:
+  repository: 'https://github.com/yusekiya/dotfiles.git'
+  dest: '~/dotfiles'
+  symlink_script: 'bash setup.sh -f'
+
+dev_env_anaconda:
+  prefix: '~/miniconda3'
+  src: 'http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-armv7l.sh'
+  dest: '~/Downloads/Miniconda3-latest-Linux-armv7l.sh'
+
+dev_env_packages:
+  - {name: git}
+  - {name: build-essential}
+  - {name: htop}
+  - {name: pkg-config}
+  - {name: tree}
+  - {name: autoconf}
+  - {name: automake}
+  - {name: bash-completion}
+  - {name: cmake}
+  - {name: colordiff}
+  - {name: exuberant-ctags}
+  - {name: direnv}
+  - {name: nkf}
+  - {name: pandoc}
+  - {name: clang}
+  - {name: ruby2.1-dev}
+  - {name: libncursesw5}
+  - {name: libncursesw5-dev}
+  - {name: libncurses5-dev}
+  - {name: libevent-dev}
+
+dev_env_git_repos:
+  - {name: tpm,
+     repo: "https://github.com/tmux-plugins/tpm.git",
+     dest: "~/.tmux/plugins/tpm" }
+  # - {name: solarized,
+  #    repo: "https://github.com/altercation/solarized.git",
+  #    dest: "~/repos/solarized" }
+  - {name: dircolors-solarized,
+     repo: "https://github.com/seebi/dircolors-solarized.git",
+     dest: "~/repos/dircolors-solarized" }
+  - {name: enhancd,
+     repo: "https://github.com/b4b4r07/enhancd.git",
+     dest: "~/repos/enhancd" }
+  - {name: tmux,
+     repo: "https://github.com/tmux/tmux.git",
+     dest: "~/repos/tmux"}
+  - {name: tig,
+     repo: "https://github.com/jonas/tig.git",
+     dest: "~/repos/tig"}
+
+dev_env_nodebrew:
+  executable_path: '~/.nodebrew/nodebrew'
+  src: 'https://raw.githubusercontent.com/hokaccha/nodebrew/master/nodebrew'
+  dest: '~/Downloads/nodebrew'

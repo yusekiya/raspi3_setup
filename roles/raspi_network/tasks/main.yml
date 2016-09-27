@@ -5,6 +5,8 @@
   register: wifi_ssid_psk
   no_log: yes
   changed_when: false
+  tags:
+    - wifi
 
 - name: Add wifi setting
   become: yes
@@ -16,3 +18,5 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{item.item.SSID}}"
   with_items: '{{wifi_ssid_psk.results|list}}'
   no_log: yes
+  tags:
+    - wifi

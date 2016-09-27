@@ -47,6 +47,14 @@
     state: '{{ item.state | default("latest") }}'
   with_items: '{{ raspi_common_packages }}'
 
+- name: Install dependencies for florence
+  apt:
+    name: '{{item}}'
+    state: present
+  with_items:
+    - florence
+    - at-spi2-core
+
 - name: 'Enable virtual keyboard on login screen | modfy task bar'
   lineinfile:
     state: present

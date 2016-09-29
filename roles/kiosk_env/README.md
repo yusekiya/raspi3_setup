@@ -116,11 +116,20 @@ Example Playbook
 
 If you want to chage autologin user to default user 'pi', perform the following.
 
-``` yaml
-- hosts: all
-  roles:
-    - {role: kiosk_env, become: yes, become_user: 'pi', kiosk_env_autologin_enabled: yes, tags: ['autologin']}
-```
+1. Modify playbook, site.yml.
+
+  ``` yaml
+  - hosts: all
+    roles:
+      - {role: kiosk_env, become: yes, become_user: 'pi', kiosk_env_autologin_enabled: yes}
+  ```
+
+2. Perform playbook with tag option.
+
+  ``` bash
+  $ ansible-playbook site.yml --tags "autologin"
+  ```
+
 
 
 License

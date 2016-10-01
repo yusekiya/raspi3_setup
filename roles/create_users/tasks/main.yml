@@ -6,6 +6,7 @@
     groups: '{{item.groups|default(omit)}}'
     append: yes
   with_items: '{{create_users_list}}'
+  no_log: yes
   # Set 'changed: false' forcely (This module returns 'changed: true' always because of maybe a bug)
   changed_when: false
 

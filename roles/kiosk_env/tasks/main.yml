@@ -31,6 +31,20 @@
     - autologin
     - need_root
 
+- name: Modify startup script for auto login
+  become: yes
+  become_user: root
+  ini_file:
+    dest: /etc/systemd/system/autologin@.service
+    section: Service
+    option: ExecStart
+    value: '-/sbin/agetty --autologin {{kiosk_env_user}} --noclear %I $TERM'
+    no_extra_spaces: yes
+  when: '{{kiosk_env_autologin_enabled}}'
+  tags:
+    - autologin
+    - need_root
+
 - name: Disable cursor
   become: yes
   become_user: root

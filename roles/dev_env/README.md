@@ -4,7 +4,7 @@ Ansible Role: dev_env
 Establish development environment.
 This role includes following tasks.
 
-_ Add user to docker group (tags: docker, need_root)
+- Add user to docker group (tags: docker, need_root)
 - Create directories (tags: basic_dirs)
 - Clone user's dotfiles (tags: dotfiles, git)
 - Install anaconda/miniconda (tags: python)

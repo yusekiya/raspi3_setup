@@ -1,4 +1,16 @@
 ---
+- name: Add docker group to user
+  become: yes
+  become_user: root
+  user:
+    name: '{{dev_env_user}}'
+    groups: 'docker'
+    append: yes
+  changed_when: false
+  tags:
+    - docker
+    - need_root
+
 - name: Make basic directories
   file:
     path: '{{item.path}}'

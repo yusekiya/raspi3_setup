@@ -87,13 +87,19 @@ Take the following procedure to configure your raspi.
 See README.md of each role for detailed information about the variables.
 4. Modify the value of `remote_user` in ansible.cfg to a user name you want to login as. Default is 'pi'.
 5. To setup wifi, the vault password is required. If you don't need wifi setup, comment out `vars/vault_wifi_key.yml` in site.yml, and `ask_vault_pass = True` in ansible.cfg. Otherwise, modify variable `raspi_network_wifi` according to your environment.
-6. Run playbook
+6. Fetch required roles
+
+  ```bash
+  $ ansible-galaxy install -r requirements.yml -p ./roles
+  ```
+
+7. Run playbook
 
   ``` bash
   $ ansible-playbook site.yml
   ```
 
-7. Rerun playbook after reboot just in case, and confirm that each task is ok (not changed).
+8. Rerun playbook after reboot just in case, and confirm that each task is ok (not changed).
 
 
 ## Launch application automatically after login for kiosk user

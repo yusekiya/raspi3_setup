@@ -1,0 +1,4 @@
+---
+- src: https://github.com/yusekiya/ansible_role_docker
+  name: docker
+

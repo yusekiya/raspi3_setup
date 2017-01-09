@@ -2,3 +2,5 @@
 - src: https://github.com/yusekiya/ansible_role_docker
   name: docker
 
+- src: https://github.com/yusekiya/ansible_role_docker_compose
+  name: docker_compose

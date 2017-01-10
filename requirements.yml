@@ -1,6 +1,20 @@
 ---
+- src: geerlingguy.firewall
+
+- src: https://github.com/yusekiya/ansible_role_raspbian_common
+  name: raspbian_common
+
+- src: https://github.com/yusekiya/ansible_role_raspbian_network
+  name: raspbian_network
+
 - src: https://github.com/yusekiya/ansible_role_docker
   name: docker
 
 - src: https://github.com/yusekiya/ansible_role_docker_compose
   name: docker_compose
+
+- src: https://github.com/yusekiya/ansible_role_dev_env
+  name: dev_env
+
+- src: https://github.com/yusekiya/ansible_role_kiosk_env
+  name: kiosk_env

@@ -31,6 +31,8 @@ raspbian_network_wifi: '{{ vault_raspi_network_wifi | default([]) }}'
 
 # Modify user name for development environment
 # dev_env_user: 'username'
+#
+docker_compose_version: 1.13.0
 
 dev_env_basic_dirs:
   - {path: '~/Downloads'}

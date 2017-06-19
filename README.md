@@ -9,7 +9,8 @@
   $ diskutil eraseDisk FAT32 <RASPBIAN> </dev/diskX>
   ```
 
-  Here, `<RASPBIAN>` is any name of the volume, and `diskX` is a disk identifier such as `disk4`.
+  Here, `<RASPBIAN>` is any name of the volume (must be capital characters),
+  and `diskX` is a disk identifier such as `disk4`.
 
 3. Unmount disk
 

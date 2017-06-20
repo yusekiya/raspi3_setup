@@ -29,7 +29,15 @@
   replace `bs=1m` with `bs=1M`.
   If this command still fails, see [here][1].
 
-5. Eject SD card
+5. Enable ssh
+
+  Create file `ssh` under `/boot` directory in the SD card.
+
+  ``` bash
+  $ touch <path to sd cardd disk>/boot/ssh
+  ```
+
+6. Eject SD card
 
   ``` bash
   $ diskutil eject </dev/diskX>

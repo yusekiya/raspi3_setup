@@ -57,10 +57,14 @@ See [here][1] for detailed information.
   ```
 
   The default password is 'raspberry'.
+
 5. Create users
+
 6. Configure the following settings with `sudo raspi-config`
+
   - Expand FileSystem: To make entire space of SD card available
   - Change User Password: Change default password of the user 'pi'
+ 
 7. Update system
 
   ``` bash

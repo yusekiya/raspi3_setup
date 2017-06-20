@@ -34,7 +34,7 @@
   Create file `ssh` under `/boot` directory in the SD card.
 
   ``` bash
-  $ touch <path to sd cardd disk>/boot/ssh
+  $ touch <path to sd card disk>/boot/ssh
   ```
 
 6. Eject SD card

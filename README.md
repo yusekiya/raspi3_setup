@@ -5,43 +5,47 @@
 1. Identify the disk of SD card, e.g., `disk4` (not `disk4s1`) with `diskutil list`
 2. Format the SD card
 
-  ``` bash
-  $ diskutil eraseDisk FAT32 <RASPBIAN> </dev/diskX>
-  ```
+    ``` bash
+    $ diskutil eraseDisk FAT32 <RASPBIAN> </dev/diskX>
+    ```
 
-  Here, `<RASPBIAN>` is any name of the volume (must be capital characters),
-  and `diskX` is a disk identifier such as `disk4`.
+    Here, `<RASPBIAN>` is any name of the volume (must be capital characters),
+    and `diskX` is a disk identifier such as `disk4`.
 
 3. Unmount disk
 
-  ``` bash
-  $ diskutil unmountDisk </dev/diskX>
-  ```
+    ``` bash
+    $ diskutil unmountDisk </dev/diskX>
+    ```
 
 4. Write os image
 
-  ``` bash
-  $ sudo dd bs=1m if=<path/to/raspbian.img> of=</dev/rdiskX>
-  ```
+    ``` bash
+    $ sudo dd bs=1m if=<path/to/raspbian.img> of=</dev/rdiskX>
+    ```
 
-  Note that 'r' is prefixed to the disk identifier.
-  If this command results in `dd: invalid number '1m'`,
-  replace `bs=1m` with `bs=1M`.
-  If this command still fails, see [here][1].
+    Note that 'r' is prefixed to the disk identifier.
+    If this command results in `dd: invalid number '1m'`,
+    replace `bs=1m` with `bs=1M`.
+    If this command still fails, see [here][1].
 
 5. Enable ssh
 
-  Create file `ssh` under `/boot` directory in the SD card.
+    Create file `ssh` under `/boot` directory in the SD card.
 
-  ``` bash
-  $ touch <path to sd card disk>/boot/ssh
-  ```
+    ``` bash
+    $ touch <path to sd card disk>/boot/ssh
+    ```
 
-6. Eject SD card
+6. Configure wifi setting
 
-  ``` bash
-  $ diskutil eject </dev/diskX>
-  ```
+
+
+7. Eject SD card
+
+    ``` bash
+    $ diskutil eject </dev/diskX>
+    ```
 
 See [here][1] for detailed information.
 
@@ -52,27 +56,27 @@ See [here][1] for detailed information.
 3. Turn on raspi
 4. Login to raspi via SSH
 
-  ``` bash
-  $ ssh pi@raspberrypi.local
-  ```
+    ``` bash
+    $ ssh pi@raspberrypi.local
+    ```
 
-  The default password is 'raspberry'.
+    The default password is 'raspberry'.
 
 5. Create users
 
 6. Configure the following settings with `sudo raspi-config`
 
-  - Expand FileSystem: To make entire space of SD card available
-  - Change User Password: Change default password of the user 'pi'
+    - Expand FileSystem: To make entire space of SD card available
+    - Change User Password: Change default password of the user 'pi'
  
 7. Update system
 
-  ``` bash
-  $ sudo apt-get update
-  $ sudo apt-get upgrade
-  $ sudo rpi-update
-  $ sudo reboot
-  ```
+    ``` bash
+    $ sudo apt-get update
+    $ sudo apt-get upgrade
+    $ sudo rpi-update
+    $ sudo reboot
+    ```
 
 
 ## Setup with ansible
@@ -84,18 +88,18 @@ Take the following procedure to configure your raspi.
 
 1. Clone raspi3_setup repository on control (host) computer.
 
-  ``` bash
-  $ git clone https://github.com/yusekiya/raspi3_setup.git
-  ```
+    ``` bash
+    $ git clone https://github.com/yusekiya/raspi3_setup.git
+    ```
 
 2. Copy template inventory file, template_hosts, to inventory file, hosts, and write the ip address of raspi into the inventory file, e.g.,
 
-  ``` ini:hosts
-  [raspi]
-  192.168.xxx.xxx
-  # or with port number
-  192.168.xxx.xxx:yyyy
-  ```
+    ``` ini:hosts
+    [raspi]
+    192.168.xxx.xxx
+    # or with port number
+    192.168.xxx.xxx:yyyy
+    ```
 
 3. Copy vars/template.yml to vars/main.yml, and modify variables in the file.
 See README.md of each role for detailed information about the variables.
@@ -103,15 +107,15 @@ See README.md of each role for detailed information about the variables.
 5. To setup wifi, the vault password is required. If you don't need wifi setup, comment out `vars/vault_wifi_key.yml` in site.yml, and `ask_vault_pass = True` in ansible.cfg. Otherwise, modify variable `raspi_network_wifi` according to your environment.
 6. Fetch required roles
 
-  ```bash
-  $ ansible-galaxy install -r requirements.yml -p ./roles
-  ```
+    ```bash
+    $ ansible-galaxy install -r requirements.yml -p ./roles
+    ```
 
 7. Run playbook
 
-  ``` bash
-  $ ansible-playbook site.yml
-  ```
+    ``` bash
+    $ ansible-playbook site.yml
+    ```
 
 8. Rerun playbook after reboot just in case, and confirm that each task is ok (not changed).
 

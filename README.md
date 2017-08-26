@@ -70,7 +70,7 @@ See [here][1] for detailed information.
 ## Initial setup
 
 1. Insert the SD card to raspi
-2. Connect raspi and rooter with LAN cable
+2. Connect raspi and rooter with LAN cable as needed
 3. Turn on raspi
 4. Login to raspi via SSH
 

@@ -21,12 +21,12 @@
 4. Write os image
 
     ``` bash
-    $ sudo dd bs=1m if=<path/to/raspbian.img> of=</dev/rdiskX>
+    $ sudo dd bs=1m if=<path/to/raspbian.img> of=</dev/rdiskX> status=progress conv=sync
     ```
 
     Note that 'r' is prefixed to the disk identifier.
     If this command results in `dd: invalid number '1m'`,
-    replace `bs=1m` with `bs=1M`.
+    replace `bs=1m` with `bs=1M` and `conv=fsync`.
     If this command still fails, see [here][1].
 
 5. Enable ssh
@@ -146,6 +146,20 @@ Edit /home/`<user>`/.config/autostart/`<name>`.desktop.
 Type=Application
 Name=<name>
 Exec=<absolute/path/to/executable>
+```
+
+
+## Optional setup
+
+### Disable swap
+
+```bash
+$ sudo dphys-swapfile swapoff
+$ sudo dphys-swapfile uninstall
+$ sudo insserv -r dphys-swapfile
+$ sudo systemctl disable dphys-swapfile
+# Check if it went well after reboot
+$ free
 ```
 
 

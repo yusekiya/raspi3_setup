@@ -163,7 +163,7 @@ $ sudo systemctl disable dphys-swapfile
 $ free
 ```
 
-### Assign static IP (> Raspbian Jessi)
+### Assign static IP (>= Raspbian Jessie)
 
 Edit `/etc/dhcpcd.conf`, for instance,
 

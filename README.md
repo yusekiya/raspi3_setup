@@ -26,7 +26,8 @@
 
     Note that 'r' is prefixed to the disk identifier.
     If this command results in `dd: invalid number '1m'`,
-    replace `bs=1m` with `bs=1M` and `conv=fsync`.
+    replace `bs=1m` with `bs=1M` (and `sync` must be replaced with `fsync`
+    when you install Raspbian on Linux).
     If this command still fails, see [here][1].
 
 5. Enable ssh

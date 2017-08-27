@@ -163,6 +163,19 @@ $ sudo systemctl disable dphys-swapfile
 $ free
 ```
 
+### Assign static IP (> Raspbian Jessi)
+
+Edit `/etc/dhcpcd.conf`, for instance,
+
+```
+interface wlan0
+static ip_address=192.168.0.10/24
+static routers=192.168.0.1
+static domain_name_servers=192.168.0.1
+```
+
+then reboot.
+
 
 <!-- Reference -->
 [1]: https://www.raspberrypi.org/documentation/installation/installing-images/mac.md

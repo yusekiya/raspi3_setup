@@ -177,5 +177,10 @@ static domain_name_servers=192.168.0.1
 then reboot.
 
 
+### Make storage read only with Root-FS
+
+See [here](https://github.com/josepsanzcamp/root-ro).
+
+
 <!-- Reference -->
 [1]: https://www.raspberrypi.org/documentation/installation/installing-images/mac.md

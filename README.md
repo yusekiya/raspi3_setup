@@ -179,8 +179,8 @@ then reboot.
 
 ### Make storage read only with Root-FS
 
-See [here](https://github.com/josepsanzcamp/root-ro).
-
+~~See [here](https://github.com/josepsanzcamp/root-ro)~~.
+(Doesn't work on raspbian jessie on raspberry pi zero w)
 
 <!-- Reference -->
 [1]: https://www.raspberrypi.org/documentation/installation/installing-images/mac.md

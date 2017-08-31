@@ -273,7 +273,7 @@ Reboot to enable changes
 
 To set system to rw: `sudo mount -o remount,rw /`
 
-To set system to ro: `mount -o remount,ro /`
+To set system to ro: `sudo mount -o remount,ro /`
 
 
 See [here](https://hallard.me/raspberry-pi-read-only/) for detail.

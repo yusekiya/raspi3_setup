@@ -177,106 +177,13 @@ static domain_name_servers=192.168.0.1
 then reboot.
 
 
-### Make storage read only with Root-FS
+### Make storage read only
 
 ~~See [here](https://github.com/josepsanzcamp/root-ro)~~.
 (Doesn't work on raspbian jessie on raspberry pi zero w)
 
-``` shell
-sudo su -
-apt-get install busybox-syslogd; dpkg --purge rsyslog
-```
-
-Edit `/boot/cmdline.txt` and prepend `fastboot noswap ro` at the end of the line.
-
-Move some files to tmp
-
-``` shell
-rm -rf /var/lib/dhcp/ /var/run /var/spool /var/lock /etc/resolv.conf
-ln -s /tmp /var/lib/dhcp
-ln -s /tmp /var/run
-ln -s /tmp /var/spool
-ln -s /tmp /var/lock
-touch /tmp/dhcpcd.resolv.conf; ln -s /tmp/dhcpcd.resolv.conf /etc/resolv.conf
-```
-
-Edit `/etc/systemd/system/dhcpcd5`
-
-```
-- PIDFile=/run/dhcpcd.pid
-+ PIDFile=/var/run/dhcpcd.pid
-```
-
-Move `random-seed` file to writable location
-
-``` shell
-rm /var/lib/systemd/random-seed
-ln -s /tmp/random-seed /var/lib/systemd/random-seed
-```
-
-Edit `/lib/systemd/system/systemd-random-seed.service` to create `random-seed` on boot
-
-```
-...other settings...
-  [Service]
-  Type=oneshot
-  RemainAfterExit=yes
-+ ExecStartPre=/bin/echo "" >/tmp/random-seed
-  ExecStart=/lib/systemd/systemd-random-seed load
-  ExecStop=/lib/systemd/systemd-random-seed save
-```
-
-Reflect change
-
-``` shell
-systemctl daemon-reload
-```
-
-Edit `/etc/cron.hourly/fake-hwclock`
-
-```
-...other settings...
-  if (command -v fake-hwclock >/dev/null 2>&1) ; then
-+   mount -o remount,rw /
-    fake-hwclock save
-+   mount -o remount,ro /
-  fi
-```
-
-Edit `/etc/ntp.conf`
-
-```
-- driftfile /var/lib/ntp/ntp.drift
-+ driftfile /var/tmp/ntp.drift
-```
-
-Remove some startup scripts
-
-``` shell
-insserv -r bootlogs; insserv -r console-setup
-```
-
-Edit `/etc/fstab` like this
-
-```
-proc            /proc           proc    defaults             0       0
-/dev/mmcblk0p1  /boot           vfat    defaults,ro          0       2
-/dev/mmcblk0p2  /               ext4    defaults,noatime,ro  0       1
-
-# For Debian Jessie
-tmpfs           /tmp            tmpfs   nosuid,nodev         0       0
-tmpfs           /var/log        tmpfs   nosuid,nodev         0       0
-tmpfs           /var/tmp        tmpfs   nosuid,nodev         0       0
-```
-
-Reboot to enable changes
-
-To set system to rw: `sudo mount -o remount,rw /`
-
-To set system to ro: `sudo mount -o remount,ro /`
-
-
-See [here](https://hallard.me/raspberry-pi-read-only/) for detail.
+~~See [here](https://hallard.me/raspberry-pi-read-only/) for detail~~
+(It works except docker.service)
 
 <!-- Reference -->
 [1]: https://www.raspberrypi.org/documentation/installation/installing-images/mac.md

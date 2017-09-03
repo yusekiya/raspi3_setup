@@ -186,6 +186,7 @@ then reboot.
 (It works except docker.service)
 
 cf. [here](https://www.indetail.co.jp/blog/11421/)
+(docker.service fails to start)
 
 #### Disable swap
 Follow the [above instruction](#disable-swap).

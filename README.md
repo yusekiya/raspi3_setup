@@ -87,7 +87,7 @@ See [here][1] for detailed information.
 
     - Expand FileSystem: To make entire space of SD card available
     - Change User Password: Change default password of the user 'pi'
- 
+
 7. Update system
 
     ``` bash
@@ -184,6 +184,145 @@ then reboot.
 
 ~~See [here](https://hallard.me/raspberry-pi-read-only/) for detail~~
 (It works except docker.service)
+
+cf. [here](https://www.indetail.co.jp/blog/11421/)
+
+#### Disable swap
+Follow the [above instruction](#disable-swap).
+
+#### Load overlay module at boot
+Add `overlay` to `/etc/modules`.
+
+#### Create RAM disk
+Edit `/etc/fstab`
+
+```
+proc            /proc           proc    defaults          0       0
+/dev/mmcblk0p5  /boot           vfat    defaults          0       2
+/dev/mmcblk0p6  /               ext4    defaults,noatime  0       1
+# Add the followings
+tmpfs           /tmp            tmpfs   defaults,size=32m 0       0
+tmpfs           /var/tmp        tmpfs   defaults,size=16m 0       0
+tmpfs           /var/log        tmpfs   defaults,size=32m 0       0
+```
+
+#### overlayfs
+Create `/fsprotect` with `mkdir /fsprotect`.
+
+Edit `/etc/fstab` to mount SD card as read only
+
+```
+/dev/mmcblk0p5  /boot           vfat    defaults,ro          0       2
+/dev/mmcblk0p6  /               ext4    defaults,noatime,ro  0       1
+```
+
+Edit `/etc/init.d/mount-overlay`
+
+```
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides: mount-overlay
+# Required-Start: mountall-bootclean
+# Required-Stop:
+# Default-Start: S
+# Default-Stop:
+# X-Start-Before: procps udev-mtab urandom
+# Short-Description: overlay mode
+# Descrition: Shutdown process will not be required
+### END INIT INFO
+
+/bin/mount /boot
+
+cd /boot
+file=noprotect
+if [ -e ${file} ]; then
+exit 0
+fi
+
+/bin/mount -t tmpfs tmpfs /fsprotect
+
+for d in etc home root var usr
+do
+mkdir /fsprotect/${d}
+mkdir /fsprotect/${d}_rw
+
+OPTS="-o lowerdir=/${d},upperdir=/fsprotect/${d},workdir=/fsprotect/${d}_rw"
+/bin/mount -t overlay ${OPTS} overlay /${d}
+done
+
+exit 0
+```
+
+then change mode `sudo chmod 755 /etc/init.d/mount-overlay`.
+
+Add the following lines to `/etc/rc.local`.
+
+```
+file=noprotect
+if [ -f /boot/${file} ]; then
+  mount -o rw,remount /
+  mount -o rw,remount /boot
+fi
+```
+
+Run `mount-overlay` at startup.
+
+``` shell
+sudo update-rc.d mount-overlay defaults 01 10
+```
+
+#### Add script to enable/disable overlayfs
+Edit `/usr/local/bin/noprotect`
+
+```
+#!/bin/sh
+
+mount -o rw,remount /boot
+cd /boot
+if [ -e "protect" ]; then
+    rm /boot/protect
+fi
+
+if [ -e "noprotect" ]; then
+    echo "noprotect mode"
+else
+    touch /boot/noprotect
+    echo "noprotect mode"
+fi
+
+mount -o ro,remount /boot
+```
+
+Edit `/usr/local/bin/protect`
+
+```
+#!/bin/sh
+
+mount -o rw,remount /boot
+cd /boot
+if [ -e "noprotect" ]; then
+    rm /boot/noprotect
+fi
+
+if [ -e "protect" ]; then
+    echo "protect mode"
+else
+    touch /boot/protect
+    echo "protect mode"
+fi
+
+mount -o ro,remount /boot
+```
+
+Make the executable
+
+``` shell
+sudo chmod a+x /usr/local/bin/noprotect
+sudo chmod a+x /usr/local/bin/protect
+```
+
+
 
 <!-- Reference -->
 [1]: https://www.raspberrypi.org/documentation/installation/installing-images/mac.md

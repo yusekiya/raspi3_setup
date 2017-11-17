@@ -37,16 +37,14 @@ docker_compose_version: 1.13.0
 dev_env_basic_dirs:
   - {path: '~/Downloads'}
   - {path: '~/.nodebrew/src'}
-  - {path: '~/bin'}
   - {path: '~/repos'}
   - {path: '~/scratch'}
-  - {path: '~/share'}
-  - {path: '~/usr/bin'}
-  - {path: '~/usr/include'}
-  - {path: '~/usr/lib'}
-  - {path: '~/usr/lib/python3/site-packages'}
-  - {path: '~/usr/share'}
-  - {path: '~/usr/src'}
+  - {path: '~/.local/bin'}
+  - {path: '~/.local/include'}
+  - {path: '~/.local/lib'}
+  - {path: '~/.local/lib/python3/site-packages'}
+  - {path: '~/.local/share'}
+  - {path: '~/.local/src'}
 
 dev_env_dotfiles:
   repository: 'https://github.com/yusekiya/dotfiles.git'

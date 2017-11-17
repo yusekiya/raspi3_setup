@@ -1,4 +1,5 @@
 ---
+has_root_privilege: False
 raspbian_common_hostname: raspberrypi
 raspbian_common_timezone: 'Asia/Tokyo'
 raspbian_common_packages:

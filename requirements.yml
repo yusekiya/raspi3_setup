@@ -4,9 +4,6 @@
 - src: https://github.com/yusekiya/ansible_role_raspbian_common
   name: raspbian_common
 
-- src: https://github.com/yusekiya/ansible_role_raspbian_network
-  name: raspbian_network
-
 - src: https://github.com/yusekiya/ansible_role_docker
   name: docker
 
